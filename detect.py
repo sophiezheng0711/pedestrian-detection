@@ -66,7 +66,7 @@ if len(idxs) > 0:
     for i in idxs.flatten():
         (x, y) = (boxes[i][0], boxes[i][1])
         (w, h) = (boxes[i][2], boxes[i][3])
-        color = [255, 0, 0] # TODO idk if this is valid color lol maybe
+        color = (255, 0, 0)
         cv.rectangle(image, (x, y), (x + w, y + h), color, 2)
 
 # show the output image
