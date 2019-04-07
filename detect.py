@@ -5,8 +5,8 @@ import time as time
 
 # TODO inputs (maybe do the cmdline thing in the tutorial?)
 imgPath = ""
-confidenceThreshold = 0
-nmsThreshold = 0
+confidenceThreshold = 0.5
+nmsThreshold = 0.3
 
 # TODO training & path
 configPath = ""
