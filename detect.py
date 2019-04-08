@@ -1,6 +1,7 @@
 import numpy as np
 import cv2 as cv
 
+# inputs, including image, threshold values, config file, and weights file
 imgPath = "val (1).jpg"
 confidenceThreshold = 0.5
 nmsThreshold = 0.3
@@ -10,6 +11,7 @@ weightsPath = "/Users/sophiezheng/Desktop/pedestrian-detection/yolov3.weights"
 
 net = cv.dnn.readNetFromDarknet(configPath, weightsPath)
 
+# import image and normalize data
 image = cv.imread(imgPath)
 (H, W) = image.shape[:2]
 
@@ -18,9 +20,7 @@ ln = [ln[i[0] - 1] for i in net.getUnconnectedOutLayers()]
 
 blob = cv.dnn.blobFromImage(image, 1 / 255.0, (416, 416), swapRB=True, crop=False)
 net.setInput(blob)
-# start = time.time()
 layerOutputs = net.forward(ln)
-# end = time.time()
 
 # bounding boxes around the object after detection
 boxes = []
