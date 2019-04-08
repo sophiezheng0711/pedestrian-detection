@@ -2,3 +2,7 @@
 
 .DS_Store
 .idea/
+
+# training data should also be ignored since they are too big
+*.cfg
+*.weights
