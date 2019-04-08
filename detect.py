@@ -1,16 +1,14 @@
-import tensorflow as tf
 import numpy as np
 import cv2 as cv
-import time as time
 
 # TODO inputs (maybe do the cmdline thing in the tutorial?)
-imgPath = ""
+imgPath = "val (2).jpg"
 confidenceThreshold = 0.5
 nmsThreshold = 0.3
 
 # TODO training & path
-configPath = ""
-weightsPath = ""
+configPath = "/Users/sophiezheng/Desktop/pedestrian-detection/yolov3.cfg"
+weightsPath = "/Users/sophiezheng/Desktop/pedestrian-detection/yolov3.weights"
 
 net = cv.dnn.readNetFromDarknet(configPath, weightsPath)
 
@@ -45,7 +43,7 @@ for lO in layerOutputs:
 
         # compare to threshold to filter out detected objects with low confidence values
         if confidence > confidenceThreshold:
-            box = detect[0:4] * np.array(W, H, W, H)
+            box = detect[0:4] * np.array([W, H, W, H])
             (cX, cY, w, h) = box.astype("int")
 
             x = int(cX - (w / 2))
