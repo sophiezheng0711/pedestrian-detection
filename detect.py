@@ -2,7 +2,7 @@ import numpy as np
 import cv2 as cv
 
 # inputs, including image, threshold values, config file, and weights file
-imgPath = "doll.jpg"
+imgPath = "wheelchair.jpg"
 confidenceThreshold = 0.5
 nmsThreshold = 0.3
 
