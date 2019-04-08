@@ -1,12 +1,10 @@
 import numpy as np
 import cv2 as cv
 
-# TODO inputs (maybe do the cmdline thing in the tutorial?)
-imgPath = "val (2).jpg"
+imgPath = "val (4).jpg"
 confidenceThreshold = 0.5
 nmsThreshold = 0.3
 
-# TODO training & path
 configPath = "/Users/sophiezheng/Desktop/pedestrian-detection/yolov3.cfg"
 weightsPath = "/Users/sophiezheng/Desktop/pedestrian-detection/yolov3.weights"
 
@@ -15,7 +13,6 @@ net = cv.dnn.readNetFromDarknet(configPath, weightsPath)
 image = cv.imread(imgPath)
 (H, W) = image.shape[:2]
 
-# TODO Supposedly we only want "People" to be detected, how is this going to help?
 ln = net.getLayerNames()
 ln = [ln[i[0] - 1] for i in net.getUnconnectedOutLayers()]
 
@@ -32,7 +29,6 @@ confidences = []
 # detected object's class label (in our case, we only need "People")
 classIDs = []
 
-# TODO may not need this many layers? Maybe only need "People"
 for lO in layerOutputs:
     # Loop over detections
     for detect in lO:
@@ -42,7 +38,8 @@ for lO in layerOutputs:
         confidence = scores[classID]
 
         # compare to threshold to filter out detected objects with low confidence values
-        if confidence > confidenceThreshold:
+        if confidence > confidenceThreshold and classID == 0:
+            print(classID)
             box = detect[0:4] * np.array([W, H, W, H])
             (cX, cY, w, h) = box.astype("int")
 
