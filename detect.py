@@ -1,7 +1,7 @@
 import numpy as np
 import cv2 as cv
 
-imgPath = "val (4).jpg"
+imgPath = "val (1).jpg"
 confidenceThreshold = 0.5
 nmsThreshold = 0.3
 
@@ -39,7 +39,6 @@ for lO in layerOutputs:
 
         # compare to threshold to filter out detected objects with low confidence values
         if confidence > confidenceThreshold and classID == 0:
-            print(classID)
             box = detect[0:4] * np.array([W, H, W, H])
             (cX, cY, w, h) = box.astype("int")
 
