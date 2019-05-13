@@ -1,18 +1,22 @@
+import argparse
 import numpy as np
 import cv2 as cv
 
+argp = argparse.ArgumentParser()
+argp.add_argument("-img", "--image", required=True, help="path to input image")
+arg = vars(argp.parse_args())
+
 # inputs, including image, threshold values, config file, and weights file
-imgPath = "wheelchair.jpg"
 confidenceThreshold = 0.5
 nmsThreshold = 0.3
 
-configPath = "/Users/sophiezheng/Desktop/pedestrian-detection/yolov3.cfg"
-weightsPath = "/Users/sophiezheng/Desktop/pedestrian-detection/yolov3.weights"
+configPath = "yolov3.cfg"
+weightsPath = "yolov3.weights"
 
 net = cv.dnn.readNetFromDarknet(configPath, weightsPath)
 
 # import image and normalize data
-image = cv.imread(imgPath)
+image = cv.imread(arg["image"])
 (H, W) = image.shape[:2]
 
 ln = net.getLayerNames()
